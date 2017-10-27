@@ -1,6 +1,5 @@
 
 function validateAll() : void{
-    //console.log("Time 2 validate!");
     let submitButton : HTMLButtonElement = <HTMLButtonElement> document.getElementById("submitBtn");
     if(validateFirstName() && validateSecondName() && validateEmail()){
         submitButton.disabled=false;
@@ -11,7 +10,6 @@ function validateAll() : void{
 function validateFirstName() : boolean{
     let inputField : HTMLInputElement = <HTMLInputElement>document.getElementById("firstName");
     let mandatoryDiv : HTMLDivElement = <HTMLDivElement>document.getElementById("firstNameMandatory");
-    console.log(inputField.value)
     if(inputField.value === ""){
         mandatoryDiv.style.display="block";
         return false;
@@ -34,6 +32,7 @@ function validateSecondName() : boolean{
 function validateEmail() : boolean{
     let newsletterCheckBox : HTMLInputElement = <HTMLInputElement>document.getElementById("newsletter");
     if(newsletterCheckBox.checked){
+        console.log("newsletter is checked!");
         let inputField : HTMLInputElement = <HTMLInputElement>document.getElementById("email");
         let mandatoryDiv : HTMLDivElement = <HTMLDivElement>document.getElementById("emailMandatory");
         if(inputField.value === ""){
@@ -61,11 +60,11 @@ function subToNewsletterChanged() : void{
         mandatoryDiv.style.display="none";
         emailLabel.style.display="none";
     }
+    validateAll();
 }
 function whereDidYouHearFromUsChanges() : void{
     let select : HTMLSelectElement = <HTMLSelectElement> document.getElementById("mediaChannelSelect");
     let textArea : HTMLTextAreaElement = <HTMLTextAreaElement> document.getElementById("otherMediaChannel");
-    console.log(select.selectedIndex);
     if(select.selectedIndex===2){
         textArea.style.display="block";
     }else{
